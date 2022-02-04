@@ -38,7 +38,7 @@ def color_guess(guess, actual):
             hint += guess_char
     return hint
 
-
+print()
 print("Generating equation...")
 possibles = list(permutations(CHARACTERS, 6))
 valid = list(filter(is_valid, possibles))
@@ -48,7 +48,8 @@ equations = [{
 equation = random.choice(equations)
 
 
-print("Find the expression that equals: " + str(equation["result"]))
+print("Find the expression that equals: " + str(int(equation["result"])))
+print()
 guess_number = 1
 while True:
     guess = input("Guess {}: ".format(guess_number))
@@ -60,10 +61,12 @@ while True:
         print("That doesn't equal " + str(equation["result"]))
     elif guess != equation["expression"]:
         print(color_guess(guess, equation["expression"]))
+        print()
         guess_number += 1
         if guess_number > 6:
             print("It was {}".format(equation["expression"]))
             break
     else:
-        "Yes!"
+        print("Yes!")
         break
+print()
