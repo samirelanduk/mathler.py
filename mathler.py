@@ -80,7 +80,7 @@ while True:
     guess = input("Guess {}: ".format(guess_number))
     if len(guess) != 6:
         print("Equation must have six characters")
-    elif not is_valid(guess):
+    elif any(c for c in guess if c not in CHARACTERS) or not is_valid(guess):
         print("Not a valid guess")
     elif eval(guess) != equation["result"]:
         print("That doesn't equal {}".format(equation["result"]))
