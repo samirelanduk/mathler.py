@@ -39,7 +39,15 @@ def color_guess(guess, actual):
         if guess_char == actual_char:
             hint += make_green(guess_char)
         elif guess_char in actual:
-            hint += make_orange(guess_char)
+            times_green = len([
+                i for i, char in enumerate(guess) if
+                char == guess_char and actual[i] == guess_char
+            ])
+            occurences = actual.count(guess_char)
+            if occurences > times_green:
+                hint += make_orange(guess_char)
+            else:
+                 hint += make_gray(guess_char)
         else:
             hint += make_gray(guess_char)
     return hint
