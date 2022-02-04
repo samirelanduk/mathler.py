@@ -73,6 +73,7 @@ while True:
             print("It was {}".format(equation["expression"]))
             break
     else:
+        print(color_guess(guess, equation["expression"]))
         print("Yes!")
         break
 print()
