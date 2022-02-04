@@ -11,7 +11,7 @@ You can run it as many times as you like, and there are no dependencies.
 On Mac/Linux:
 
 ```bash
-git clone https://github.com/samirelanduk/mathler.py
-chmod +x mathler.py/mathler.py
-mv mathler.py/mathler.py /usr/local/bin
+git clone https://github.com/samirelanduk/mathler.py mathler
+chmod +x mathler/mathler.py
+mv mathler/mathler.py /usr/local/bin
 ```
