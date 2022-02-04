@@ -31,15 +31,21 @@ equations = [{
 equation = random.choice(equations)
 
 print("Find the expression that equals: " + str(equation["result"]))
-
-guess = input()
-if len(guess) != 6:
-    print("Equation must have six characters")
-elif not is_valid(guess):
-    print("Not a valid guess")
-elif eval(guess) != equation["result"]:
-    print("That doesn't equal " + str(equation["result"]))
-elif guess != equation["result"]:
-    print("No")
-else:
-    "Yes!"
+guess_number = 1
+while True:
+    guess = input("Guess {}: ".format(guess_number))
+    if len(guess) != 6:
+        print("Equation must have six characters")
+    elif not is_valid(guess):
+        print("Not a valid guess")
+    elif eval(guess) != equation["result"]:
+        print("That doesn't equal " + str(equation["result"]))
+    elif guess != equation["result"]:
+        print("No")
+        guess_number += 1
+        if guess_number > 6:
+            print("It was {}".format(equation["expression"]))
+            break
+    else:
+        "Yes!"
+        break
