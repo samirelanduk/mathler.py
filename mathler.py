@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import random
 from itertools import permutations
 
@@ -58,7 +60,7 @@ while True:
     elif not is_valid(guess):
         print("Not a valid guess")
     elif eval(guess) != equation["result"]:
-        print("That doesn't equal " + str(equation["result"]))
+        print("That doesn't equal {}".format(equation["result"]))
     elif guess != equation["expression"]:
         print(color_guess(guess, equation["expression"]))
         print()
