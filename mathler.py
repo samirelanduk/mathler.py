@@ -46,8 +46,8 @@ def color_guess(guess, actual):
 
 print()
 print("Generating equation...")
-possibles = list(permutations(CHARACTERS, 6))
-valid = list(filter(is_valid, possibles))
+possibles = permutations(CHARACTERS, 6)
+valid = filter(is_valid, possibles)
 equations = [{
     "expression": "".join(p), "result": eval("".join(p))
 } for p in valid]
