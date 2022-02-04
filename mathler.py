@@ -5,9 +5,6 @@ DIGITS = "0123456789"
 OPERATORS = "+-/*"
 CHARACTERS = DIGITS + OPERATORS
 
-print("Generating equation...")
-possibles = list(permutations(CHARACTERS, 6))
-
 def is_valid(expression):
     if expression[0] in "+/*0": return False # Don't start with these
     if expression[5] in OPERATORS: return False # Don't end with operator
@@ -21,14 +18,35 @@ def is_valid(expression):
     if (0 < result < 200) and round(result) == result: return True
     return False
 
+
+def make_green(char):
+    return "\033[92m{}\033[0m".format(char)
+
+
+def make_orange(char):
+    return "\033[93m{}\033[0m".format(char)
+
+
+def color_guess(guess, actual):
+    hint = ""
+    for guess_char, actual_char in zip(guess, actual):
+        if guess_char == actual_char:
+            hint += make_green(guess_char)
+        elif guess_char in actual:
+            hint += make_orange(guess_char)
+        else:
+            hint += guess_char
+    return hint
+
+
+print("Generating equation...")
+possibles = list(permutations(CHARACTERS, 6))
 valid = list(filter(is_valid, possibles))
-
 equations = [{
-    "expression": "".join(p),
-    "result": eval("".join(p))
+    "expression": "".join(p), "result": eval("".join(p))
 } for p in valid]
-
 equation = random.choice(equations)
+
 
 print("Find the expression that equals: " + str(equation["result"]))
 guess_number = 1
@@ -40,8 +58,8 @@ while True:
         print("Not a valid guess")
     elif eval(guess) != equation["result"]:
         print("That doesn't equal " + str(equation["result"]))
-    elif guess != equation["result"]:
-        print("No")
+    elif guess != equation["expression"]:
+        print(color_guess(guess, equation["expression"]))
         guess_number += 1
         if guess_number > 6:
             print("It was {}".format(equation["expression"]))
