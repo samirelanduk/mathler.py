@@ -1,3 +1,4 @@
+import random
 from itertools import permutations
 
 DIGITS = "0123456789"
@@ -17,7 +18,14 @@ def is_valid(expression):
         if char == "0": # Numbers starting with 0
             if n != 0 and expression[n - 1] in OPERATORS: return False
     result = eval("".join(expression)) # Sensible integer result
-    if (0 < result < 1000) and round(result) == result: return True
+    if (0 < result < 200) and round(result) == result: return True
     return False
 
 valid = list(filter(is_valid, possibles))
+
+equations = [{
+    "expression": "".join(p),
+    "result": eval("".join(p))
+} for p in valid]
+
+equation = random.choice(equations)
