@@ -22,11 +22,15 @@ def is_valid(expression):
 
 
 def make_green(char):
-    return "\033[92m{}\033[0m".format(char)
+    return "\033[92;1m{}\033[0m".format(char)
 
 
 def make_orange(char):
-    return "\033[93m{}\033[0m".format(char)
+    return "\033[93;1m{}\033[0m".format(char)
+
+
+def make_gray(char):
+    return "\033[37;2m{}\033[0m".format(char)
 
 
 def color_guess(guess, actual):
@@ -37,7 +41,7 @@ def color_guess(guess, actual):
         elif guess_char in actual:
             hint += make_orange(guess_char)
         else:
-            hint += guess_char
+            hint += make_gray(guess_char)
     return hint
 
 print()
