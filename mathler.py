@@ -40,6 +40,10 @@ def make_gray(char):
     return "\033[37;2m{}\033[0m".format(char)
 
 
+def make_bold(char):
+    return "\033[1m{}\033[0m".format(char)
+
+
 def color_guess(guess, actual):
     hint = ""
     for guess_char, actual_char in zip(guess, actual):
@@ -69,7 +73,7 @@ equations = [{
 equation = random.choice(equations)
 
 
-print("Find the expression that equals: " + str(int(equation["result"])))
+print("Find the expression that equals: {}".format(make_bold(equation["result"])))
 print()
 guess_number = 1
 while True:
